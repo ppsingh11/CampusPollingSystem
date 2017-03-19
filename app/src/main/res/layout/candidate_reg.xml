@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+   <LinearLayout android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   xmlns:app="http://schemas.android.com/apk/res-auto"
+   xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:background="#fcfcfc"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.root.ocps.MainActivity"
+   >
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+
+
+
+
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        app:title="Candidate Registration"
+        app:titleTextColor="#f4f4ec" />
+    <ScrollView
+
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="5dp"
+
+        android:hint="Roll Number"
+        android:background="#f9f9d3"
+        android:id="@+id/enrollment" />
+
+            <Button
+                android:text="SEARCH"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/find" />
+
+    <TextView
+        android:hint="Full Name"
+        android:layout_height="40dp"
+        android:textSize="20dp"
+        android:layout_margin="10dp"
+        android:background="#f9f9d3"
+        android:layout_width="match_parent"
+
+        android:id="@+id/textView" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+
+        android:layout_height="40dp"
+        android:background="#f9f9d3"
+        android:inputType="textPersonName"
+        android:hint="Deaprtment"
+
+        android:id="@+id/editText2"
+        android:layout_weight="0.04" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+        android:background="#f9f9d3"
+        android:inputType="textPersonName"
+        android:hint="Semester"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_weight="0.04" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:background="#f9f9d3"
+        android:layout_height="40dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="Email"
+        android:id="@+id/editText5" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="phone"
+        android:ems="10"
+        android:layout_margin="8dp"
+        android:hint="Contact"
+        android:background="#f9f9d3"
+        android:id="@+id/editText3" />
+
+
+
+
+       <Button
+        android:text="REGISTER"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

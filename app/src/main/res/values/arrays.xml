@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="planets_array">
+        <item>PRESIDENT</item>
+        <item>VICE PRESIDENT</item>
+        <item>SECRETARY</item>
+        <item>VICE SECRETARY</item>
+    </string-array>
+</resources>

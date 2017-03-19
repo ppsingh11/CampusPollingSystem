@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:background="#fcfcfc"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.root.ocps.MainActivity"
+    >
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+
+
+
+
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:id="@+id/toolbar"
+        app:title="Voter Registration"
+        app:titleTextColor="#f4f4ec" />
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:layout_margin="5dp"
+
+
+        android:hint="Roll Number"
+        android:background="#f9f9d3"
+        android:id="@+id/roll" />
+
+            <Button
+                android:text="SEARCH"
+                android:onClick="Search_voter"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/search" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:visibility="invisible"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:id="@+id/searchlayout">
+
+    <TextView
+        android:hint="Name"
+        android:textSize="20dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="#f9f9d3"
+        android:layout_width="match_parent"
+
+        android:id="@+id/name" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:textSize="20dp"
+
+        android:layout_height="40dp"
+        android:background="#f9f9d3"
+        android:inputType="textPersonName"
+        android:hint="Deaprtment"
+        android:ems="10"
+        android:id="@+id/dept"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="20dp"
+        android:layout_height="40dp"
+        android:layout_margin="10dp"
+        android:background="#f9f9d3"
+        android:inputType="textPersonName"
+        android:hint="Semester"
+        android:ems="10"
+        android:id="@+id/sem"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_margin="8dp"
+        android:background="#f9f9d3"
+        android:layout_height="40dp"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:hint="Email"
+        android:id="@+id/editText5" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="phone"
+        android:ems="10"
+        android:layout_margin="8dp"
+        android:hint="Contact"
+        android:background="#f9f9d3"
+        android:id="@+id/editText3" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Password"
+        android:layout_margin="8dp"
+        android:background="#f9f9d3"
+        android:id="@+id/editText4" />
+
+
+    <TextView
+        android:text="Select Grievances , if any"
+        android:layout_marginTop="5dp"
+        android:padding="5dp"
+        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:background="#f9f9d3"
+        android:textSize="20sp"
+        android:id="@+id/textView3" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <CheckBox
+            android:text="WATER"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkBox2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/checkBox5"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@+id/checkBox6"
+            android:layout_toStartOf="@+id/checkBox6" />
+
+        <CheckBox
+            android:text="LAUNDRY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox2"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/checkBox6"
+            android:layout_toStartOf="@+id/checkBox6" />
+
+        <CheckBox
+            android:text="FOOD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox6"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <CheckBox
+            android:text="SWEEPING"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox7"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/checkBox5"
+            android:layout_toEndOf="@+id/checkBox5" />
+
+        <CheckBox
+            android:text="WIFI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/checkBox4"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/checkBox7"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+
+    </RelativeLayout>
+    <Button
+        android:text="REGISTER"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

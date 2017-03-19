@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_centerHorizontal="true"
+    android:background="#fcfcfc"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.root.ocps.MainActivity"
+    >
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+
+
+
+        app:title="Log In"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="#f4f4ec"
+        android:id="@+id/toolbar2" />
+
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
+
+        android:hint="Enrollment Number"
+        android:background="#f9f9d3"
+        android:id="@+id/enrollment" />
+
+
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:hint="Password"
+        android:layout_margin="8dp"
+        android:background="#f9f9d3"
+        android:id="@+id/editText4" />
+
+    <Button
+        android:text="LOGIN"
+        android:onClick="voter_login"
+        android:layout_width="match_parent"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4" />
+
+
+
+    <TextView
+        android:text="Forgot Password?"
+        android:textSize="15dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2" />
+
+
+</LinearLayout>
