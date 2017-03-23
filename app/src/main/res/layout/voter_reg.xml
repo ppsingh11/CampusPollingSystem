@@ -102,27 +102,28 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:hint="Email"
-        android:id="@+id/editText5" />
+        android:id="@+id/email" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:inputType="phone"
-        android:ems="10"
-        android:layout_margin="8dp"
-        android:hint="Contact"
-        android:background="#f9f9d3"
-        android:id="@+id/editText3" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:inputType="textPassword"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Set Password"
         android:layout_margin="8dp"
         android:background="#f9f9d3"
-        android:id="@+id/editText4" />
+        android:id="@+id/password" />
+
+            <CheckBox
+                android:text="Are You Hosteler?"
+
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hosteler"
+                />
+
 
 
     <TextView
@@ -135,8 +136,9 @@
         android:textSize="20sp"
         android:id="@+id/textView3" />
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
+        android:orientation="vertical"
         android:layout_height="match_parent">
 
 
@@ -144,61 +146,48 @@
             android:text="WATER"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/checkBox2"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:id="@+id/checkBox5"
-            android:layout_alignParentBottom="true"
-            android:layout_toLeftOf="@+id/checkBox6"
-            android:layout_toStartOf="@+id/checkBox6" />
+            android:id="@+id/water"
+           />
 
         <CheckBox
             android:text="LAUNDRY"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox2"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/checkBox6"
-            android:layout_toStartOf="@+id/checkBox6" />
+            android:id="@+id/laundry"
+             />
 
         <CheckBox
             android:text="FOOD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox6"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:id="@+id/food"
+             />
 
         <CheckBox
             android:text="SWEEPING"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox7"
-            android:layout_alignParentBottom="true"
-            android:layout_toRightOf="@+id/checkBox5"
-            android:layout_toEndOf="@+id/checkBox5" />
+            android:id="@+id/sweeping"
+            />
 
         <CheckBox
             android:text="WIFI"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/checkBox4"
-            android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/checkBox7"
-            android:layout_marginLeft="17dp"
-            android:layout_marginStart="17dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:id="@+id/wifi"
+
+            />
 
 
 
-    </RelativeLayout>
+    </LinearLayout>
     <Button
         android:text="REGISTER"
+        android:onClick="Register"
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
-        android:id="@+id/button4" />
+        android:id="@+id/register" />
         </LinearLayout>
 
     </ScrollView>
