@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -88,6 +89,8 @@ public class voterReg extends Activity {
             Toast.makeText(this,"Enter Roll Number", Toast.LENGTH_SHORT).show();
         }
         else {
+
+
             try {
 
                 URL url = new URL(link);
@@ -143,6 +146,8 @@ public class voterReg extends Activity {
                 Sem.setText("Sem :"+semester);
 
                 //  Toast.makeText(this,""+name+" "+dept+" "+semester,Toast.LENGTH_SHORT).show();
+
+
 
             } catch (Exception e) {
 

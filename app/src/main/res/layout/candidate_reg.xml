@@ -18,15 +18,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-
-
-
-
         android:theme="?attr/actionBarTheme"
         android:minHeight="?attr/actionBarSize"
         android:id="@+id/toolbar"
         app:title="Candidate Registration"
         app:titleTextColor="#f4f4ec" />
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:layout_margin="5dp"
+
+
+        android:hint="Roll Number"
+        android:background="#f9f9d3"
+        android:id="@+id/roll" />
+
+    <Button
+        android:text="SEARCH"
+        android:onClick="Search_roll"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/search" />
+
+
+
     <ScrollView
 
         android:layout_height="wrap_content"
@@ -35,27 +55,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
+            android:visibility="invisible"
+            android:id="@+id/Search_layout"
             android:layout_height="match_parent">
-
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:inputType="number"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="5dp"
-
-        android:hint="Roll Number"
-        android:background="#f9f9d3"
-        android:id="@+id/enrollment" />
-
-            <Button
-                android:text="SEARCH"
-                android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/find" />
 
     <TextView
         android:hint="Full Name"
@@ -65,22 +67,26 @@
         android:background="#f9f9d3"
         android:layout_width="match_parent"
 
-        android:id="@+id/textView" />
+        android:id="@+id/name" />
 
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="horizontal">
     <TextView
-        android:layout_width="match_parent"
+        android:hint="Deaprtment"
+        android:layout_width="0dp"
+
         android:layout_margin="10dp"
         android:textSize="20dp"
-
         android:layout_height="40dp"
         android:background="#f9f9d3"
         android:inputType="textPersonName"
-        android:hint="Deaprtment"
 
-        android:id="@+id/editText2"
-        android:layout_weight="0.04" />
+        android:id="@+id/dept"
+        android:layout_weight="0.2" />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:textSize="20dp"
@@ -88,9 +94,115 @@
         android:inputType="textPersonName"
         android:hint="Semester"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_weight="0.04" />
-    <EditText
+        android:id="@+id/sem"
+        android:layout_weight="0.3" />
+      </LinearLayout>
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nominatingfor" />
+
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/party" />
+
+            <Button
+                android:text="ADD PROMISES"
+                android:onClick="Promises"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/promises" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:id="@+id/promise_layout"
+                android:layout_height="match_parent">
+
+
+
+            <EditText
+                android:hint="Promise"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:id="@+id/add_promise"
+                android:layout_height="wrap_content" />
+
+             <Button
+                 android:text="ADD"
+                 android:onClick="Add_promise"
+                 android:id="@+id/promise_add"
+                 android:layout_width="0dp"
+                 android:layout_weight="0.2"
+                 android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="100dp"
+                    android:src="@drawable/pic"
+                    android:id="@+id/image"/>
+                <Button
+                    android:text="UPLOAD IMAGE"
+                    android:onClick="pic_img"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+
+                    android:layout_height="100dp"
+                    android:id="@+id/button"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:src="@drawable/logo"
+                    android:layout_height="100dp"
+                    android:id="@+id/party_symbol"/>
+                <Button
+                    android:text="UPLOAD PARTY SYMBOL"
+                    android:onClick="pick_symbol"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="100dp"
+                    android:id="@+id/party_sym_upload"/>
+
+
+
+            </LinearLayout>
+
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_margin="8dp"
+                android:background="#f9f9d3"
+                android:layout_height="40dp"
+
+                android:ems="10"
+                android:hint="Reason For Election"
+                android:id="@+id/election_reason" />
+
+            <EditText
         android:layout_width="match_parent"
         android:layout_margin="8dp"
         android:background="#f9f9d3"
@@ -100,15 +212,7 @@
         android:hint="Email"
         android:id="@+id/editText5" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:inputType="phone"
-        android:ems="10"
-        android:layout_margin="8dp"
-        android:hint="Contact"
-        android:background="#f9f9d3"
-        android:id="@+id/editText3" />
+
 
 
 
