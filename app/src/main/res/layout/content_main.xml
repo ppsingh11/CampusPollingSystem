@@ -134,6 +134,7 @@
         <Button
 
             android:text="VIEW VOTER'S GRIEVANCES"
+            android:onClick="grievances"
             android:background="#49acaca8"
             android:layout_width="0dp"
             android:layout_height="match_parent"

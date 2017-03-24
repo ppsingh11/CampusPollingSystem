@@ -42,6 +42,11 @@
             android:label="cand_info"
             android:theme="@style/AppTheme" />
 
+
+        <activity android:name=".grievances"
+            android:label="grievances"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>

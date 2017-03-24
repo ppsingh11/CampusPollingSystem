@@ -210,7 +210,7 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:hint="Email"
-        android:id="@+id/editText5" />
+        android:id="@+id/mail" />
 
 
 
@@ -219,6 +219,7 @@
 
        <Button
         android:text="REGISTER"
+           android:onClick="submit"
         android:layout_width="match_parent"
         android:layout_marginTop="5dp"
         android:layout_height="wrap_content"

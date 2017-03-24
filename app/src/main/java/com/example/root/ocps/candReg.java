@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -39,8 +41,9 @@ public class candReg extends Activity {
 
     Spinner spn , spn_party;
     ImageView Image , Party_symbol;
+    Bitmap pic,party_sym;
     String id;
-    EditText Roll;
+    EditText Roll,Reason,Email;
     TextView Name,Dept,Sem;
     ArrayList<String> Promises_list = new ArrayList<String>();
 
@@ -50,6 +53,8 @@ public class candReg extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candidate_reg);
+        Reason = (EditText)findViewById(R.id.election_reason);
+        Email = (EditText)findViewById(R.id.mail);
 
         Roll = (EditText)findViewById(R.id.roll);
         Name = (TextView)findViewById(R.id.name);
@@ -95,11 +100,11 @@ public class candReg extends Activity {
             Uri uri = data.getData();
 
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                pic = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
 
 
-                Image.setImageBitmap(bitmap);
+                Image.setImageBitmap(pic);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -110,11 +115,11 @@ public class candReg extends Activity {
             Uri uri = data.getData();
 
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                party_sym = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
                 // Log.d(TAG, String.valueOf(bitmap));
 
 
-                Party_symbol.setImageBitmap(bitmap);
+                Party_symbol.setImageBitmap(party_sym);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -285,6 +290,112 @@ public class candReg extends Activity {
 
         }
 
+
+
+
+    }
+
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    public String getStringImage(Bitmap bmp){
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] imageBytes = baos.toByteArray();
+        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
+        return encodedImage;
+    }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void submit(View view) {
+
+        String post = spn.getSelectedItem().toString();
+        String party  = spn_party.getSelectedItem().toString();
+       String image = getStringImage(pic);
+        String p_symbol = getStringImage(party_sym);
+
+       String reason = Reason.getText().toString();
+        String email = Email.getText().toString();
+
+
+        String p_list = "";
+
+        for (String s : Promises_list )
+        {
+            p_list += s + "`";
+        }
+
+
+        String link = "https://onlinevotingnitp.000webhostapp.com/candidates_reg.php";
+
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
+
+        try {
+
+
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
+
+            String data = URLEncoder.encode("ID", "UTF-8") + "=" +
+                    URLEncoder.encode(id, "UTF-8");
+
+            data += "&" + URLEncoder.encode("POST", "UTF-8")
+                    + "=" + URLEncoder.encode(post, "UTF-8");
+
+           data += "&" + URLEncoder.encode("PARTY", "UTF-8")
+                   + "=" + URLEncoder.encode(party, "UTF-8");
+
+            data += "&" + URLEncoder.encode("C_IMAGE", "UTF-8")
+                    + "=" + URLEncoder.encode(image, "UTF-8");
+
+           data += "&" + URLEncoder.encode("P_SYM", "UTF-8")
+                 + "=" + URLEncoder.encode(p_symbol, "UTF-8");
+
+            data += "&" + URLEncoder.encode("REASON", "UTF-8")
+                    + "=" + URLEncoder.encode(reason, "UTF-8");
+            data += "&" + URLEncoder.encode("EMAIL", "UTF-8")
+                    + "=" + URLEncoder.encode(email, "UTF-8");
+         data += "&" + URLEncoder.encode("PROMISES", "UTF-8")
+                 + "=" + URLEncoder.encode(p_list, "UTF-8");
+            ////////////////////////////////////
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+            wr.write(data);
+
+           wr.flush();
+
+
+            ///////////////////////////////
+
+
+            BufferedReader reader = new BufferedReader(new
+                    InputStreamReader(conn.getInputStream()));
+            StringBuffer sb = new StringBuffer("");
+            String line = "";
+
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                break;
+            }
+
+            reader.close();
+
+
+
+              Toast.makeText(this,""+sb.toString(),Toast.LENGTH_SHORT).show();
+
+
+
+        } catch (Exception e) {
+
+            Toast.makeText(this, ""+e.toString(), Toast.LENGTH_SHORT).show();
+
+        }
 
 
 

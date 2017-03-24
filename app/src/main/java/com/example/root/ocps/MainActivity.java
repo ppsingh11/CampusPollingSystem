@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -120,5 +121,13 @@ public class MainActivity extends AppCompatActivity
         Intent CandReg = new Intent(this,candReg.class);
 
         startActivity(CandReg);
+    }
+
+    public void grievances(View view) {
+
+        Toast.makeText(this, "Please Wait.. Fetching Data..", Toast.LENGTH_SHORT).show();
+
+        Intent gr = new Intent(this,grievances.class);
+        startActivity(gr);
     }
 }
