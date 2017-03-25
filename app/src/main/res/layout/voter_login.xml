@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,46 +16,71 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
-
-
-
         app:title="Vote"
         android:theme="?attr/actionBarTheme"
         android:minHeight="?attr/actionBarSize"
         app:titleTextColor="#f4f4ec"
         android:id="@+id/toolbar2" />
 
-    <ImageView
+    <Button
+        android:text="VIEW CANDIDATE PROFILE"
+        android:onClick="candidate_profile"
+        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/vote"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true" />
+        android:id="@+id/view_profile" />
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:id="@+id/profile_layout"
+       android:visibility="invisible"
+       android:layout_height="wrap_content">
+    <Spinner
+        android:layout_width="0dp"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:id="@+id/c_spinner" />
 
     <Button
-        android:textColor="#d10913"
-        android:textColorLink="@color/colorPrimary"
-        android:text="View Candidate info"
-        android:onClick="cand_info"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignBottom="@+id/imageView2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="79dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="67dp" />
+        android:text="VIEW"
+        android:layout_width="0dp"
+        android:layout_weight="0.2"
+        android:layout_height="58dp"
+        android:id="@+id/view" />
+
+   </LinearLayout>
+
+
 
     <Button
-        android:textColor="#d10913"
-        android:text="VOTE NOW"
-        android:layout_width="wrap_content"
+
+        android:text="VOTE"
+        android:onClick="vote"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button3"
-        android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2"
-        android:layout_alignRight="@+id/button2"
-        android:layout_alignEnd="@+id/button2" />
-</RelativeLayout>
+        android:id="@+id/vote" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:id="@+id/vote_layout"
+        android:visibility="invisible"
+        android:layout_height="wrap_content">
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:layout_height="wrap_content"
+            android:id="@+id/v_spinner" />
+
+        <Button
+            android:text="VIEW LIST"
+            android:layout_width="0dp"
+            android:layout_weight="0.2"
+            android:layout_height="58dp"
+            android:id="@+id/viewlist" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
