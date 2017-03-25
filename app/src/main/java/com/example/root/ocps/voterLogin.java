@@ -55,4 +55,11 @@ public class voterLogin extends Activity {
         LinearLayout l = (LinearLayout)findViewById(R.id.vote_layout);
         l.setVisibility(view.VISIBLE);
     }
+
+    public void view_list_for_vote(View view) {
+
+        Intent i = new Intent(this,vote_now.class);
+        startActivity(i);
+
+    }
 }

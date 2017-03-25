@@ -47,6 +47,10 @@
             android:label="grievances"
             android:theme="@style/AppTheme" />
 
+        <activity android:name=".vote_now"
+            android:label="Vote_Now"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>
