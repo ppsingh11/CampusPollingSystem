@@ -2,10 +2,12 @@ package com.example.root.ocps;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
@@ -46,6 +48,7 @@ public class candReg extends Activity {
     EditText Roll,Reason,Email;
     TextView Name,Dept,Sem;
     ArrayList<String> Promises_list = new ArrayList<String>();
+    ProgressDialog pd;
 
     int i=1;
 
@@ -125,6 +128,182 @@ public class candReg extends Activity {
             }
         }
     }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+class MyTask extends AsyncTask<String, Integer, String> {
+    @Override
+    protected String doInBackground(String... params) {
+
+        String link = "https://onlinevotingnitp.000webhostapp.com/users_record.php";
+
+        try {
+
+            URL url = new URL(link);
+            URLConnection conn = url.openConnection();
+
+            String roll_num = URLEncoder.encode("ID", "UTF-8") + "=" +
+                    URLEncoder.encode(id, "UTF-8");
+            ////////////////////////////////////
+            conn.setDoOutput(true);
+            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+            wr.write(roll_num);
+
+            wr.flush();
+
+
+            ///////////////////////////////
+
+
+            BufferedReader reader = new BufferedReader(new
+                    InputStreamReader(conn.getInputStream()));
+            StringBuffer sb = new StringBuffer("");
+            String line = "";
+
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+                break;
+            }
+
+            return sb.toString();
+        } catch (Exception e) {
+            return e.toString();
+        }
+    }
+
+    @Override
+    protected void onPostExecute(String sb) {
+        pd.dismiss();
+        Roll.setFocusable(false);
+        try {
+
+            JSONArray json = new JSONArray(sb.toString());
+
+            JSONObject jsonObj = json.getJSONObject(0);
+
+            // Getting JSON Array node
+            //JSONArray contacts = jsonObj.getJSONArray("contacts");
+            String name = jsonObj.getString("name");
+            String dept = jsonObj.getString("department");
+            String semester = jsonObj.getString("semester");
+
+            // Search.setText("SEARCH");
+
+
+            LinearLayout l = (LinearLayout) findViewById(R.id.Search_layout);
+            l.setVisibility(View.VISIBLE);
+
+            Name.setText(name);
+            Dept.setText("Dept :" +dept);
+            Sem.setText("Sem :"+semester);
+
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+
+
+        }
+
+
+    }
+
+    @Override
+    protected void onPreExecute() {
+        pd = ProgressDialog.show(candReg.this, "", "Please Wait", false);
+
+    }
+
+
+
+}
+
+    ///////////////////////////Task End//////////////////////////////////
+
+
+    /////////////////////////////////Async Task Submit/////////////////////////////////
+    class SUBMIT extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String link = "https://onlinevotingnitp.000webhostapp.com/candidates_reg.php";
+
+            String c_data = params[0];
+
+            try {
+
+                URL url = new URL(link);
+                URLConnection conn = url.openConnection();
+
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                wr.write(c_data);
+
+                wr.flush();
+
+                BufferedReader reader = new BufferedReader(new
+                        InputStreamReader(conn.getInputStream()));
+                StringBuffer sb = new StringBuffer("");
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                    break;
+                }
+
+                reader.close();
+                return sb.toString();
+
+            } catch (Exception e) {
+                return e.toString();
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String sb) {
+            pd.dismiss();
+
+            try {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(candReg.this);
+                builder.setMessage(sb.toString());
+                builder.setCancelable(false);
+                builder.setTitle("Message");
+
+                builder.setPositiveButton(
+                        "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                finish();
+                                dialog.cancel();
+                            }
+                        });
+
+
+                AlertDialog alert11 = builder.create();
+                alert11.show();
+
+
+            } catch (Exception e) {
+                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            pd = ProgressDialog.show(candReg.this, "", "Please Wait", false);
+
+        }
+
+
+
+    }
+
+    ///////////////////////////Task End//////////////////////////////////
 
 
 
@@ -210,11 +389,6 @@ public class candReg extends Activity {
     public void Search_roll(View view) {
 
 
-        String link = "https://onlinevotingnitp.000webhostapp.com/users_record.php";
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
         id = Roll.getText().toString();
 
         if(id.isEmpty())
@@ -223,76 +397,8 @@ public class candReg extends Activity {
         }
         else {
 
-
-            try {
-
-                URL url = new URL(link);
-                URLConnection conn = url.openConnection();
-
-                String roll_num = URLEncoder.encode("ID", "UTF-8") + "=" +
-                        URLEncoder.encode(id, "UTF-8");
-                ////////////////////////////////////
-                conn.setDoOutput(true);
-                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-
-                wr.write(roll_num);
-
-                wr.flush();
-
-
-                ///////////////////////////////
-
-
-                BufferedReader reader = new BufferedReader(new
-                        InputStreamReader(conn.getInputStream()));
-                StringBuffer sb = new StringBuffer("");
-                String line = "";
-
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line);
-                    break;
-                }
-
-                reader.close();
-
-
-                Roll.setFocusable(false);
-
-                JSONArray json = new JSONArray(sb.toString());
-
-                JSONObject jsonObj = json.getJSONObject(0);
-
-                // Getting JSON Array node
-                //JSONArray contacts = jsonObj.getJSONArray("contacts");
-                String name = jsonObj.getString("name");
-                String dept = jsonObj.getString("department");
-                String semester = jsonObj.getString("semester");
-
-                // Search.setText("SEARCH");
-
-
-                LinearLayout l = (LinearLayout) findViewById(R.id.Search_layout);
-                l.setVisibility(view.VISIBLE);
-
-                Name.setText(name);
-                Dept.setText("Dept :" +dept);
-                Sem.setText("Sem :"+semester);
-
-                //  Toast.makeText(this,""+name+" "+dept+" "+semester,Toast.LENGTH_SHORT).show();
-
-
-
-            } catch (Exception e) {
-
-                Toast.makeText(this, "No Internet Connection", Toast.LENGTH_SHORT).show();
-
-            }
-
+            new MyTask().execute(id);
         }
-
-
-
-
     }
 
 
@@ -328,17 +434,9 @@ public class candReg extends Activity {
         }
 
 
-        String link = "https://onlinevotingnitp.000webhostapp.com/candidates_reg.php";
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
-        StrictMode.setThreadPolicy(policy);
-
         try {
 
 
-            URL url = new URL(link);
-            URLConnection conn = url.openConnection();
 
             String data = URLEncoder.encode("ID", "UTF-8") + "=" +
                     URLEncoder.encode(id, "UTF-8");
@@ -362,32 +460,7 @@ public class candReg extends Activity {
          data += "&" + URLEncoder.encode("PROMISES", "UTF-8")
                  + "=" + URLEncoder.encode(p_list, "UTF-8");
             ////////////////////////////////////
-            conn.setDoOutput(true);
-            OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
-
-            wr.write(data);
-
-           wr.flush();
-
-
-            ///////////////////////////////
-
-
-            BufferedReader reader = new BufferedReader(new
-                    InputStreamReader(conn.getInputStream()));
-            StringBuffer sb = new StringBuffer("");
-            String line = "";
-
-            while ((line = reader.readLine()) != null) {
-                sb.append(line);
-                break;
-            }
-
-            reader.close();
-
-
-
-              Toast.makeText(this,""+sb.toString(),Toast.LENGTH_SHORT).show();
+            new SUBMIT().execute(data);
 
 
 
