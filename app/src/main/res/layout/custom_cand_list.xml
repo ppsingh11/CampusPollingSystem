@@ -7,6 +7,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:paddingTop="15dp"
+        android:paddingLeft="8dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -37,13 +39,13 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_weight="0.4"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:id="@+id/party_sym"/>
         <Button
             android:text="VOTE"
             android:onClick="cast_vote"
             android:layout_width="0dp"
-            android:layout_weight="0.2"
+            android:layout_weight="0.3"
             android:layout_height="wrap_content"
             android:id="@+id/vote_now"/>
 

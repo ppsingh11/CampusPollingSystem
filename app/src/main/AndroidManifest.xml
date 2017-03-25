@@ -38,10 +38,6 @@
             android:label="voter_login"
             android:theme="@style/AppTheme" />
 
-        <activity android:name=".candidateInfo"
-            android:label="cand_info"
-            android:theme="@style/AppTheme" />
-
 
         <activity android:name=".grievances"
             android:label="grievances"
@@ -49,6 +45,9 @@
 
         <activity android:name=".vote_now"
             android:label="Vote_Now"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".view_candidate_profile"
+            android:label="View Profile"
             android:theme="@style/AppTheme" />
 
     </application>

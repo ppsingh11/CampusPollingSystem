@@ -2,7 +2,10 @@ package com.example.root.ocps;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +35,7 @@ import java.util.ArrayList;
 public class custom_cand_list extends BaseAdapter {
 
     vote_now VOTE;
+    int flag=0;
     TextView c_name,c_roll;
     ImageView p_sym;
     Button cast_vote;
@@ -42,6 +46,13 @@ public class custom_cand_list extends BaseAdapter {
     ArrayList<String> Candidate_name = new ArrayList<String>();
     ArrayList<String> Candidate_roll = new ArrayList<String>();
     ArrayList<String> Party_symbol = new ArrayList<String>();
+
+    public void task()
+    {
+        new MyTask().execute("hi");
+    }
+
+
 
 
     //////////////connecting to server to fetch info//////////////////
@@ -81,11 +92,13 @@ public class custom_cand_list extends BaseAdapter {
             }
 
         }
+////////////////////////////////   post execute     /////////////////////////////
 
 
         @Override
         protected void onPostExecute(String sb) {
             pd.dismiss();
+            flag=1;
 
             try {
 
@@ -98,9 +111,9 @@ public class custom_cand_list extends BaseAdapter {
 
                 Toast.makeText(mContext, ""+json.length(), Toast.LENGTH_SHORT).show();
 
-              //  for(int p=0;p<json.length();p++)
+                for(int p=0;p<json.length();)
                 {
-                  /*  jsonObj = json.getJSONObject(p);
+                   jsonObj = json.getJSONObject(p);
                     p=p+1;
                     c_id = jsonObj.getString("ID");
                     Candidate_roll.add(c_id);
@@ -110,22 +123,22 @@ public class custom_cand_list extends BaseAdapter {
                     p=p+1;
                     c_name = jsonObj.getString("Name");
                     Candidate_name.add(c_name);
-                    */
-                    Candidate_name.add("PPS");
-                    Candidate_roll.add("1406014");
+
+
                 }
+
 
 
 
             }
             catch (Exception e)
             {
-                Toast.makeText(mContext, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, ""+e.toString(), Toast.LENGTH_SHORT).show();
             }
 
 
         }
-
+//////////////////////////////////////post execution finished///////////////////////////////////////
         @Override
         protected void onPreExecute() {
             pd = ProgressDialog.show(mContext, "", "Please Wait", false);
@@ -139,27 +152,20 @@ public class custom_cand_list extends BaseAdapter {
     ///////////////////////////Task End//////////////////////////////////
 
 
-
-    /////////////////connection closed//////////////////////////////
-
-
     custom_cand_list(vote_now v,Context context)
     {
         VOTE = v;
         mContext = context;
-        try {
-            String str = new MyTask().execute("hi").get();
-        }
-        catch (Exception e)
-        {
-
-        }
-
-    // Candidate_name.add("PPS");
-     //   Candidate_roll.add("1406014");
-
+        task();
 
     }
+
+
+
+    /////////////////connection closed//////////////////////////////
+
+
+
 
     @Override
     public long getItemId(int position) {
@@ -172,8 +178,16 @@ public class custom_cand_list extends BaseAdapter {
         LayoutInflater inf = LayoutInflater.from(VOTE);
         View v = inf.inflate(R.layout.custom_cand_list, null);
 
+
+
         c_name = (TextView)v.findViewById(R.id.candidate_name);
         c_roll = (TextView)v.findViewById(R.id.candidate_roll);
+        p_sym = (ImageView)v.findViewById(R.id.party_sym);
+
+        byte[] decodedString = Base64.decode(Party_symbol.get(position), Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        p_sym.setImageBitmap(decodedByte);
+
 
         c_name.setText(Candidate_name.get(position));
         c_roll.setText(Candidate_roll.get(position));
@@ -190,6 +204,11 @@ public class custom_cand_list extends BaseAdapter {
     public int getCount() {
         return Candidate_name.size();
     }
+
+
+
+
+
 }
 
 

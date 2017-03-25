@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+
+        android:layout_height="match_parent"
+        tools:context="com.example.root.ocps.MainActivity">
+
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+
+        android:id="@+id/toolbar4"
+        app:title="Candidate Profile" />
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+        android:layout_marginTop="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="0.6"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content">
+        <TextView
+            android:textSize="20sp"
+            android:paddingTop="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name"
+            android:text="NAME" />
+        <TextView
+            android:textSize="20sp"
+            android:paddingTop="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/roll"
+            android:text="ROLL NO" />
+
+                    <TextView
+                        android:textSize="20sp"
+                        android:paddingTop="10sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/dept"
+                        android:text="DEPARTMENT" />
+
+        <TextView
+            android:textSize="20sp"
+            android:paddingTop="10sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/semster"
+            android:text="SEMSTER" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_weight="0.4"
+                    android:layout_height="140dp"
+                    android:background="@drawable/logo"
+                    />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/part"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.6"
+                android:layout_height="wrap_content">
+            <TextView
+                android:textSize="20sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/party"
+                android:text="PARTY NAME"/>
+
+                <TextView
+                    android:textSize="20sp"
+                    android:paddingTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/post"
+                    android:text="NOMINATION FOR POST"/>
+
+            </LinearLayout>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="0.4"
+                android:src="@drawable/exit"
+                android:layout_height="70dp"
+                />
+        </LinearLayout>
+
+
+
+
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/email"
+            android:text="EMAIL"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/promise"
+            android:text="PROMISES" />
+
+
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/promise_list">
+        </ListView>
+        <TextView
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/previous_work"
+            android:text="PREVIOUS WORK" />
+        <ListView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/previous_work_list">
+        </ListView>
+        <Button
+            android:text="go back"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:id="@+id/button"
+            android:layout_gravity="center"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+

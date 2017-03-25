@@ -62,4 +62,10 @@ public class voterLogin extends Activity {
         startActivity(i);
 
     }
+
+    public void view_profile(View view) {
+
+        Intent i = new Intent(this,view_candidate_profile.class);
+        startActivity(i);
+    }
 }
