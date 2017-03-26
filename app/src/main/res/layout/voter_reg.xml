@@ -128,10 +128,10 @@
         android:layout_margin="8dp"
         android:background="#f9f9d3"
         android:layout_height="40dp"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:ems="10"
-        android:hint="Email"
-        android:id="@+id/email" />
+        android:hint="Contact"
+        android:id="@+id/contact" />
 
 
     <EditText

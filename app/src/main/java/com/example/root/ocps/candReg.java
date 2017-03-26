@@ -34,6 +34,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by root on 13/2/17.
@@ -45,10 +46,11 @@ public class candReg extends Activity {
     ImageView Image , Party_symbol;
     Bitmap pic,party_sym;
     String id;
-    EditText Roll,Reason,Email;
+    EditText Roll,Reason,Email,V_OTP;
     TextView Name,Dept,Sem;
     ArrayList<String> Promises_list = new ArrayList<String>();
     ProgressDialog pd;
+    String OTP;
 
     int i=1;
 
@@ -58,6 +60,8 @@ public class candReg extends Activity {
         setContentView(R.layout.candidate_reg);
         Reason = (EditText)findViewById(R.id.election_reason);
         Email = (EditText)findViewById(R.id.mail);
+        V_OTP = (EditText)findViewById(R.id.otp);
+
 
         Roll = (EditText)findViewById(R.id.roll);
         Name = (TextView)findViewById(R.id.name);
@@ -129,12 +133,15 @@ public class candReg extends Activity {
         }
     }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 class MyTask extends AsyncTask<String, Integer, String> {
     @Override
     protected String doInBackground(String... params) {
 
         String link = "https://onlinevotingnitp.000webhostapp.com/users_record.php";
+        String otp = params[0];
 
         try {
 
@@ -143,6 +150,8 @@ class MyTask extends AsyncTask<String, Integer, String> {
 
             String roll_num = URLEncoder.encode("ID", "UTF-8") + "=" +
                     URLEncoder.encode(id, "UTF-8");
+            roll_num += "&" + URLEncoder.encode("OTP", "UTF-8")
+                    + "=" + URLEncoder.encode(otp, "UTF-8");
             ////////////////////////////////////
             conn.setDoOutput(true);
             OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -190,12 +199,32 @@ class MyTask extends AsyncTask<String, Integer, String> {
             // Search.setText("SEARCH");
 
 
-            LinearLayout l = (LinearLayout) findViewById(R.id.Search_layout);
-            l.setVisibility(View.VISIBLE);
-
             Name.setText(name);
             Dept.setText("Dept :" +dept);
             Sem.setText("Sem :"+semester);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(candReg.this);
+            builder.setMessage("An OTP has been sent to your registered Email address");
+            builder.setCancelable(false);
+            builder.setTitle("Message");
+
+            builder.setPositiveButton(
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+
+            AlertDialog alert11 = builder.create();
+            alert11.show();
+
+            //////////////////////////////////////////////
+
+            LinearLayout l = (LinearLayout) findViewById(R.id.otp_layout);
+            l.setVisibility(View.VISIBLE);
 
 
         } catch (Exception e) {
@@ -397,7 +426,11 @@ class MyTask extends AsyncTask<String, Integer, String> {
         }
         else {
 
-            new MyTask().execute(id);
+            Random ran = new Random();
+            int otp = ran.nextInt(8888) + 1111;
+            OTP = ""+otp;
+
+            new MyTask().execute(OTP);
         }
     }
 
@@ -473,4 +506,26 @@ class MyTask extends AsyncTask<String, Integer, String> {
 
 
     }
+
+    public void verify_otp(View view) {
+
+        String E_otp = V_OTP.getText().toString();
+        if(E_otp.equals(OTP))
+        {
+            Toast.makeText(this,"OTP Verified",Toast.LENGTH_SHORT).show();
+
+            LinearLayout otp_l = (LinearLayout) findViewById(R.id.otp_layout);
+            otp_l.setVisibility(View.GONE);
+
+            LinearLayout l = (LinearLayout) findViewById(R.id.Search_layout);
+            l.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            Toast.makeText(this,"Enter Correct OTP",Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 }

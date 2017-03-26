@@ -45,7 +45,7 @@ import static android.R.attr.data;
 public class voterReg extends Activity {
 
 
-    EditText Roll, Email, Password, V_OTP;
+    EditText Roll, Contact, Password, V_OTP;
     TextView Name, Dept, Sem;
     Button Search;
     String id;
@@ -66,7 +66,7 @@ public class voterReg extends Activity {
         Sem = (TextView) findViewById(R.id.sem);
         Search = (Button) findViewById(R.id.search);
 
-        Email = (EditText) findViewById(R.id.email);
+        Contact = (EditText) findViewById(R.id.contact);
 
         Password = (EditText) findViewById(R.id.password);
 
@@ -144,6 +144,28 @@ public class voterReg extends Activity {
                 Name.setText(name);
                 Dept.setText("Dept :" + dept);
                 Sem.setText("Sem :" + semester);
+
+
+                //////////////////////////////////////////////
+                AlertDialog.Builder builder = new AlertDialog.Builder(voterReg.this);
+                builder.setMessage("An OTP has been sent to your registered Email address");
+                builder.setCancelable(false);
+                builder.setTitle("Message");
+
+                builder.setPositiveButton(
+                        "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel();
+                            }
+                        });
+
+
+                AlertDialog alert11 = builder.create();
+                alert11.show();
+
+                //////////////////////////////////////////////
 
                 LinearLayout l = (LinearLayout) findViewById(R.id.otp_layout);
                 l.setVisibility(View.VISIBLE);
@@ -274,7 +296,7 @@ public class voterReg extends Activity {
     ///////////////////////////////////////////////////////////////////////////////
     public void Register(View view) {
 
-        String v_mail = Email.getText().toString();
+        String v_mail = Contact.getText().toString();
         String v_hosteler = "No", v_wifi = "No", v_water = "No", v_food = "No", v_laundry = "No", v_sweeping = "No";
         String v_pass = Password.getText().toString();
 
@@ -299,8 +321,8 @@ public class voterReg extends Activity {
             v_food = "Yes";
         }
 
-        if (!(android.util.Patterns.EMAIL_ADDRESS.matcher(v_mail).matches())) {
-            Toast.makeText(this, "Enter A Valid Email Address", Toast.LENGTH_SHORT).show();
+        if (v_mail.isEmpty()) {
+            Toast.makeText(this, "Enter Contact Number", Toast.LENGTH_SHORT).show();
         } else if (v_pass.isEmpty()) {
             Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
         } else {
