@@ -47,10 +47,7 @@ public class custom_cand_list extends BaseAdapter {
     ArrayList<String> Candidate_roll = new ArrayList<String>();
     ArrayList<String> Party_symbol = new ArrayList<String>();
 
-    public void task()
-    {
-        new MyTask().execute("hi");
-    }
+
 
 
 
@@ -130,6 +127,7 @@ public class custom_cand_list extends BaseAdapter {
 
 
 
+
             }
             catch (Exception e)
             {
@@ -151,12 +149,32 @@ public class custom_cand_list extends BaseAdapter {
 
     ///////////////////////////Task End//////////////////////////////////
 
+    public int fact(int a)
+    {
+        int res=1;
+        if(a==0 || a==1)
+            return 1;
+        else
+            return a*fact(a-1);
+
+    }
+
 
     custom_cand_list(vote_now v,Context context)
     {
         VOTE = v;
         mContext = context;
-        task();
+        MyTask t = new MyTask();
+        t.execute("hi");
+        int data = 400;
+      //  int result = fact(data);
+        try {
+            t.get();
+        }
+        catch (Exception e)
+        {
+
+        }
 
     }
 

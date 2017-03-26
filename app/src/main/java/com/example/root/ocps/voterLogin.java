@@ -1,12 +1,15 @@
 package com.example.root.ocps;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -57,6 +60,27 @@ public class voterLogin extends Activity {
     }
 
     public void view_list_for_vote(View view) {
+
+        Toast.makeText(this,"Please wait",Toast.LENGTH_SHORT).show();
+        try {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("A List of all candidates for selected post will appear along with their election symbol, click on the VOTE Button to whom you want to vote");
+            builder.setCancelable(false);
+            builder.setTitle("Message");
+
+            AlertDialog alert11 = builder.create();
+            alert11.show();
+
+
+           // Thread.sleep(10);
+
+
+        }
+        catch (Exception e)
+        {
+
+        }
 
         Intent i = new Intent(this,vote_now.class);
         startActivity(i);

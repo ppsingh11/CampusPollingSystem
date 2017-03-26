@@ -26,6 +26,7 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.util.Random;
 
 
 import org.apache.http.HttpResponse;
@@ -44,11 +45,12 @@ import static android.R.attr.data;
 public class voterReg extends Activity {
 
 
-    EditText Roll, Email, Password;
+    EditText Roll, Email, Password, V_OTP;
     TextView Name, Dept, Sem;
     Button Search;
     String id;
     ProgressDialog pd;
+    String OTP;
 
     CheckBox Water, Wifi, Laundry, Sweeping, Food, Hosteler;
 
@@ -58,6 +60,7 @@ public class voterReg extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voter_reg);
         Roll = (EditText) findViewById(R.id.roll);
+        V_OTP = (EditText)findViewById(R.id.otp);
         Name = (TextView) findViewById(R.id.name);
         Dept = (TextView) findViewById(R.id.dept);
         Sem = (TextView) findViewById(R.id.sem);
@@ -76,12 +79,15 @@ public class voterReg extends Activity {
 
     }
 
+
+
     /////////////////////////////////Async Task/////////////////////////////////
     class MyTask extends AsyncTask<String, Integer, String> {
         @Override
         protected String doInBackground(String... params) {
 
             String link = "https://onlinevotingnitp.000webhostapp.com/users_record.php";
+            String otp= params[0];
 
             try {
 
@@ -90,6 +96,8 @@ public class voterReg extends Activity {
 
                 String roll_num = URLEncoder.encode("ID", "UTF-8") + "=" +
                         URLEncoder.encode(id, "UTF-8");
+                roll_num += "&" + URLEncoder.encode("OTP", "UTF-8")
+                        + "=" + URLEncoder.encode(otp, "UTF-8");
                 ////////////////////////////////////
                 conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
@@ -137,11 +145,11 @@ public class voterReg extends Activity {
                 Dept.setText("Dept :" + dept);
                 Sem.setText("Sem :" + semester);
 
-                LinearLayout l = (LinearLayout) findViewById(R.id.searchlayout);
+                LinearLayout l = (LinearLayout) findViewById(R.id.otp_layout);
                 l.setVisibility(View.VISIBLE);
 
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), ""+e.toString(), Toast.LENGTH_SHORT).show();
 
 
             }
@@ -255,7 +263,11 @@ public class voterReg extends Activity {
             Toast.makeText(this, "Enter Roll Number", Toast.LENGTH_SHORT).show();
         } else {
 
-            new MyTask().execute(id);
+            Random ran = new Random();
+            int otp = ran.nextInt(8888) + 1111;
+            OTP = ""+otp;
+
+            new MyTask().execute(OTP);
         }
     }
 
@@ -323,5 +335,26 @@ public class voterReg extends Activity {
             ////////////////////////////////////
 
         }
+    }
+
+    ////////////////////////verify otp///////
+    public void verify_otp(View view) {
+
+        String E_otp = V_OTP.getText().toString();
+        if(E_otp.equals(OTP))
+        {
+            Toast.makeText(this,"OTP Verified",Toast.LENGTH_SHORT).show();
+
+            LinearLayout otp_l = (LinearLayout) findViewById(R.id.otp_layout);
+            otp_l.setVisibility(View.GONE);
+
+            LinearLayout l = (LinearLayout) findViewById(R.id.searchlayout);
+            l.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            Toast.makeText(this,"Enter Correct OTP",Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
