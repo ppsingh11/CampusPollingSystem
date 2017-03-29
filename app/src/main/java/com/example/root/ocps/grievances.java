@@ -121,21 +121,23 @@ public class grievances extends AppCompatActivity {
 
 
 
-                    int w;
-                    w = (Integer.parseInt(wifi)/Integer.parseInt(total_voters))*100;
+                    float w;
+
+                    w = (Float.parseFloat(wifi)/Integer.parseInt(total_voters))*100;
+
 
 
                     barEntries.add(new BarEntry(w,0));
-                    w = (Integer.parseInt(food)/Integer.parseInt(total_voters))*100;
+                    w = (Float.parseFloat(food)/Integer.parseInt(total_voters))*100;
                     barEntries.add(new BarEntry(w,1));
 
-                    w = (Integer.parseInt(water)/Integer.parseInt(total_voters))*100;
+                    w = (Float.parseFloat(water)/Integer.parseInt(total_voters))*100;
                     barEntries.add(new BarEntry(w,2));
 
-                    w = (Integer.parseInt(laundry)/Integer.parseInt(total_voters))*100;
+                    w = (Float.parseFloat(laundry)/Integer.parseInt(total_voters))*100;
                     barEntries.add(new BarEntry(w,3));
 
-                    w = (Integer.parseInt(sweeping)/Integer.parseInt(total_voters))*100;
+                    w = (Float.parseFloat(sweeping)/Integer.parseInt(total_voters))*100;
                     barEntries.add(new BarEntry(w,4));
 
 

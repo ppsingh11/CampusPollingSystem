@@ -68,6 +68,14 @@ public class voterLogin extends Activity {
             builder.setMessage("A List of all candidates for selected post will appear along with their election symbol, click on the VOTE Button to whom you want to vote");
             builder.setCancelable(false);
             builder.setTitle("Message");
+            builder.setPositiveButton(
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
 
             AlertDialog alert11 = builder.create();
             alert11.show();
@@ -82,14 +90,47 @@ public class voterLogin extends Activity {
 
         }
 
+        String str = spn_vote.getSelectedItem().toString();
         Intent i = new Intent(this,vote_now.class);
+        i.putExtra("POST",str);
         startActivity(i);
 
     }
 
     public void view_profile(View view) {
 
-        Intent i = new Intent(this,view_candidate_profile.class);
+        Toast.makeText(this,"Please wait",Toast.LENGTH_SHORT).show();
+        try {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("A List of all candidates for selected post will appear along with their Roll Number");
+            builder.setCancelable(false);
+            builder.setTitle("Message");
+            builder.setPositiveButton(
+                    "OK",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+            AlertDialog alert11 = builder.create();
+            alert11.show();
+
+
+            // Thread.sleep(10);
+
+
+        }
+        catch (Exception e)
+        {
+
+        }
+
+        String str = spn_profile.getSelectedItem().toString();
+        Intent i = new Intent(this,list_of_candidates_to_view_profile.class);
+        i.putExtra("POST",str);
         startActivity(i);
     }
 }

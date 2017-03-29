@@ -3,8 +3,10 @@ package com.example.root.ocps;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -51,14 +53,37 @@ public class candReg extends Activity {
     ArrayList<String> Promises_list = new ArrayList<String>();
     ProgressDialog pd;
     String OTP;
-
+    Button btn;
     int i=1;
+
+
+    ////////////////////////////////
+    SharedPreferences spf;
+
+
+    ///////////////////////////////
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.candidate_reg);
-        Reason = (EditText)findViewById(R.id.election_reason);
+
+        ////////////////////////////////
+        spf = getSharedPreferences("myshared", Context.MODE_PRIVATE);
+
+        if(spf.getBoolean("Flag",false)) {
+
+
+            LinearLayout L = (LinearLayout) findViewById(R.id.Search_layout);
+            L.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+        ///////////////////////////////
+
+        /*Reason = (EditText)findViewById(R.id.election_reason);
         Email = (EditText)findViewById(R.id.mail);
         V_OTP = (EditText)findViewById(R.id.otp);
 
@@ -94,10 +119,61 @@ public class candReg extends Activity {
         ArrayAdapter<String> my_adp_party = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Values_party);
         spn_party.setAdapter(my_adp_party);
 
-
+*/
     }
 
     ///////////////////////////////
+
+    public void Reg() {
+
+
+        Reason = (EditText) findViewById(R.id.election_reason);
+        Email = (EditText) findViewById(R.id.mail);
+        V_OTP = (EditText) findViewById(R.id.otp);
+        btn = (Button)findViewById(R.id.search_button);
+
+        Roll = (EditText) findViewById(R.id.roll);
+        Name = (TextView) findViewById(R.id.name);
+        Dept = (TextView) findViewById(R.id.dept);
+        Sem = (TextView) findViewById(R.id.sem);
+
+        Image = (ImageView) findViewById(R.id.image);
+        Party_symbol = (ImageView) findViewById(R.id.party_symbol);
+
+        spn = (Spinner) findViewById(R.id.nominatingfor);
+        ArrayList<String> Values = new ArrayList<String>();
+        Values.add("Nominating For");
+        Values.add("Hostel-President");
+        Values.add("Hostel-Vice President");
+        Values.add("College-President");
+        Values.add("College-Vice President");
+        ArrayAdapter<String> my_adp = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Values);
+        spn.setAdapter(my_adp);
+
+
+        spn_party = (Spinner) findViewById(R.id.party);
+        ArrayList<String> Values_party = new ArrayList<String>();
+
+        Values_party.add("Select Your Party");
+        Values_party.add("AAP");
+        Values_party.add("BJP");
+        Values_party.add("Congress");
+        Values_party.add("Individual");
+
+        ArrayAdapter<String> my_adp_party = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, Values_party);
+        spn_party.setAdapter(my_adp_party);
+
+    }
+
+
+
+
+
+
+
+
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -112,12 +188,15 @@ public class candReg extends Activity {
 
 
                 Image.setImageBitmap(pic);
-            } catch (IOException e) {
+            }
+
+            catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
             }
         }
 
-        else
+        else if(requestCode == 2 && resultCode == RESULT_OK && data != null && data.getData() != null)
         {
             Uri uri = data.getData();
 
@@ -129,7 +208,13 @@ public class candReg extends Activity {
                 Party_symbol.setImageBitmap(party_sym);
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
             }
+        }
+
+        else
+        {
+            Toast.makeText(this,"Error while getting image",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -225,6 +310,16 @@ class MyTask extends AsyncTask<String, Integer, String> {
 
             LinearLayout l = (LinearLayout) findViewById(R.id.otp_layout);
             l.setVisibility(View.VISIBLE);
+
+            btn.setVisibility(View.GONE);
+
+            /////////////////////////////////
+            SharedPreferences.Editor edt = spf.edit();
+            edt.putBoolean("Flag",true);
+            edt.commit();
+
+
+            ////////////////////////////////
 
 
         } catch (Exception e) {
@@ -417,6 +512,7 @@ class MyTask extends AsyncTask<String, Integer, String> {
 
     public void Search_roll(View view) {
 
+        Reg();
 
         id = Roll.getText().toString();
 
@@ -429,6 +525,7 @@ class MyTask extends AsyncTask<String, Integer, String> {
             Random ran = new Random();
             int otp = ran.nextInt(8888) + 1111;
             OTP = ""+otp;
+            Toast.makeText(this,"OTP "+OTP, Toast.LENGTH_SHORT).show();
 
             new MyTask().execute(OTP);
         }

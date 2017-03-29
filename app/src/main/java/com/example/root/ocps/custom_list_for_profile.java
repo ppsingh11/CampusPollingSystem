@@ -34,9 +34,9 @@ import java.util.ArrayList;
  * Created by Prashant Pratap on 25-03-2017.
  */
 
-public class custom_cand_list extends BaseAdapter {
+public class custom_list_for_profile extends BaseAdapter {
 
-    vote_now VOTE;
+    list_of_candidates_to_view_profile VOTE;
     int flag=0;
     TextView c_name,c_roll;
     ImageView p_sym;
@@ -63,7 +63,7 @@ public class custom_cand_list extends BaseAdapter {
 
             String link = "https://onlinevotingnitp.000webhostapp.com/candidate_list_for_voting.php";
 
-             String p = params[0];
+            String p = params[0];
 
             try {
 
@@ -74,7 +74,7 @@ public class custom_cand_list extends BaseAdapter {
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
 
-               conn.setDoOutput(true);
+                conn.setDoOutput(true);
                 OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
 
                 wr.write(data);
@@ -125,7 +125,7 @@ public class custom_cand_list extends BaseAdapter {
 
                 for(int p=0;p<json.length();)
                 {
-                   jsonObj = json.getJSONObject(p);
+                    jsonObj = json.getJSONObject(p);
                     p=p+1;
                     c_id = jsonObj.getString("ID");
                     Candidate_roll.add(c_id);
@@ -151,7 +151,7 @@ public class custom_cand_list extends BaseAdapter {
 
 
         }
-//////////////////////////////////////post execution finished///////////////////////////////////////
+        //////////////////////////////////////post execution finished///////////////////////////////////////
         @Override
         protected void onPreExecute() {
             pd = ProgressDialog.show(mContext, "", "Please Wait", false);
@@ -175,16 +175,16 @@ public class custom_cand_list extends BaseAdapter {
     }
 
 
-    custom_cand_list(vote_now v,Context context,String str)
+    custom_list_for_profile(list_of_candidates_to_view_profile v,Context context,String str)
     {
         VOTE = v;
         pst = str;
         mContext = context;
         MyTask t = new MyTask();
         t.execute(pst);
-       // Toast.makeText(mContext,"p "+post,Toast.LENGTH_SHORT).show();
+        // Toast.makeText(mContext,"p "+post,Toast.LENGTH_SHORT).show();
         int data = 400;
-      //  int result = fact(data);
+        //  int result = fact(data);
         try {
             t.get();
         }
@@ -211,7 +211,7 @@ public class custom_cand_list extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inf = LayoutInflater.from(VOTE);
-        View v = inf.inflate(R.layout.custom_cand_list, null);
+        View v = inf.inflate(R.layout.custom_list_for_profile, null);
 
 
 
