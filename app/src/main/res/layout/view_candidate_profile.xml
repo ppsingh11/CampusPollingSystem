@@ -20,16 +20,24 @@
 
         android:id="@+id/toolbar4"
         app:title="Candidate Profile" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/scr_view"
+        android:visibility="invisible"
+
+        android:layout_height="wrap_content">
 
     <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
         android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:background="#f4eceb"
                 android:orientation="horizontal"
                 android:layout_height="wrap_content">
 
@@ -43,20 +51,23 @@
             android:textSize="20sp"
             android:paddingTop="10sp"
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:id="@+id/name"
             android:text="NAME" />
         <TextView
             android:textSize="20sp"
-            android:paddingTop="10sp"
+
             android:layout_width="wrap_content"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:id="@+id/roll"
             android:text="ROLL NO" />
 
                     <TextView
                         android:textSize="20sp"
-                        android:paddingTop="10sp"
+                        android:textStyle="bold"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/dept"
@@ -64,16 +75,19 @@
 
         <TextView
             android:textSize="20sp"
-            android:paddingTop="10sp"
+            android:textStyle="bold"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/semster"
+            android:id="@+id/semester"
             android:text="SEMSTER" />
 
                 </LinearLayout>
 
                 <ImageView
                     android:layout_width="0dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/pic"
                     android:layout_weight="0.4"
                     android:layout_height="140dp"
                     android:background="@drawable/logo"
@@ -84,6 +98,8 @@
         <LinearLayout
             android:id="@+id/part"
             android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:background="#f2dc7b"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -111,6 +127,8 @@
             </LinearLayout>
             <ImageView
                 android:layout_width="0dp"
+                android:id="@+id/sym"
+                android:layout_gravity="center"
                 android:layout_weight="0.4"
                 android:src="@drawable/exit"
                 android:layout_height="70dp"
@@ -124,15 +142,17 @@
         <TextView
             android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:background="#b4f293"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email"
-            android:text="EMAIL"/>
+            android:id="@+id/reason"
+            android:text="Reason"/>
 
         <TextView
             android:textSize="20sp"
             android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
+            android:background="#46e77c"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/promise"
             android:text="PROMISES" />
@@ -155,12 +175,14 @@
             android:id="@+id/previous_work_list">
         </ListView>
         <Button
-            android:text="go back"
+            android:text="GO BACK"
+            android:onClick="go_back"
             android:layout_width="140dp"
             android:layout_height="40dp"
             android:id="@+id/button"
             android:layout_gravity="center"/>
         </LinearLayout>
+    </ScrollView>
 
 
     </LinearLayout>

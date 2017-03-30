@@ -1,6 +1,8 @@
 package com.example.root.ocps;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,7 +15,7 @@ import android.widget.Toast;
  * Created by Prashant Pratap on 30-03-2017.
  */
 
-public class list_of_candidates_to_view_profile extends Activity {
+public class list_of_candidates_to_view_profile extends ListActivity {
 
     ListView list;
     String s;
@@ -24,7 +26,7 @@ public class list_of_candidates_to_view_profile extends Activity {
 
         s = getIntent().getStringExtra("POST");
 
-        list = (ListView)findViewById(R.id.cand_list_to_view_profile);
+        list = (ListView)findViewById(android.R.id.list);
 
 
 
@@ -32,14 +34,21 @@ public class list_of_candidates_to_view_profile extends Activity {
 
 
     }
+    @Override
+    protected void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
 
+        TextView n = (TextView)v.findViewById(R.id.candidate_roll);
+        String roll = n.getText().toString();
 
+        Toast.makeText(this,roll,Toast.LENGTH_SHORT).show();
 
+        Intent i =new Intent(this,view_candidate_profile.class);
+        i.putExtra("ROLL",roll);
+        startActivity(i);
 
-
-    public void view_profile(View view) {
-
-        Toast.makeText(this,"Coming Soon",Toast.LENGTH_LONG).show();
 
     }
+
+
 }
