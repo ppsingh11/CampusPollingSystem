@@ -43,6 +43,8 @@ public class custom_list_for_profile extends BaseAdapter {
     Button cast_vote;
     ProgressDialog pd;
     String pst;
+    ListView list1;
+    static int var=1;
 
     Context mContext;
 
@@ -139,6 +141,16 @@ public class custom_list_for_profile extends BaseAdapter {
 
                 }
 
+                ////////////////////////
+
+
+
+
+              //  list1.setAdapter(new custom_list_for_profile(VOTE,mContext,pst));
+
+
+                /////////////////////////
+
 
 
 
@@ -180,8 +192,15 @@ public class custom_list_for_profile extends BaseAdapter {
         VOTE = v;
         pst = str;
         mContext = context;
+
+         list1 = VOTE.list;
         MyTask t = new MyTask();
-        t.execute(pst);
+        if(var==1)
+        {
+            t.execute(pst);
+            var++;
+        }
+
         // Toast.makeText(mContext,"p "+post,Toast.LENGTH_SHORT).show();
         int data = 400;
         //  int result = fact(data);

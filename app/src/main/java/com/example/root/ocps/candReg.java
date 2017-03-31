@@ -190,7 +190,7 @@ public class candReg extends Activity {
                 Image.setImageBitmap(pic);
             }
 
-            catch (IOException e) {
+            catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
             }
@@ -206,7 +206,7 @@ public class candReg extends Activity {
 
 
                 Party_symbol.setImageBitmap(party_sym);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this,e.toString(),Toast.LENGTH_SHORT).show();
             }
