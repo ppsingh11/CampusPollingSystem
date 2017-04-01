@@ -37,6 +37,8 @@ public class login extends Activity{
     }
 
 
+
+
     /////////////////////////////////Async Task/////////////////////////////////
     class MyTask extends AsyncTask<String, Integer, String> {
         @Override
@@ -146,5 +148,20 @@ public class login extends Activity{
             }
 
         }
+    }
+
+    public void forgot_password(View view) {
+
+        switch(view.getId())
+        {
+            case R.id.f_password:
+
+                Toast.makeText(this,"Coming Soon",Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                break;
+        }
+
+
     }
 }

@@ -43,7 +43,7 @@ public class view_candidate_profile extends Activity {
     TextView name,roll,dept,sem,post,party,reason;
     ProgressDialog pd;
     ImageView PIC, SYM;
-    ListView prev_w_l;
+    ListView prev_w_l,promises;
     ScrollView scr;
 
     ArrayAdapter<String> my_adp;
@@ -66,7 +66,9 @@ public class view_candidate_profile extends Activity {
         PIC = (ImageView)findViewById(R.id.pic);
         SYM = (ImageView)findViewById(R.id.sym);
         prev_w_l = (ListView)findViewById(R.id.previous_work_list);
+        promises = (ListView)findViewById(R.id.promise_list);
         scr = (ScrollView)findViewById(R.id.scr_view);
+
 
 
 
@@ -152,6 +154,7 @@ public class view_candidate_profile extends Activity {
                 String c_img = jsonObj.getString("c_image");
                 String p_sym = jsonObj.getString("p_sym");
                 String c_promises = jsonObj.getString("promises");
+                String c_works =  jsonObj.getString("works");
                 String c_reason = jsonObj.getString("reason");
 
 
@@ -173,26 +176,25 @@ public class view_candidate_profile extends Activity {
                 SYM.setImageBitmap(decodedByte1);
 
         ///////////////////////////////////////////////
-           //   ArrayList<String> l = new ArrayList<String>();
-                List<String> l = new ArrayList<String>(Arrays.asList(c_promises.split("`")));
-
-
-
-
-
-               ViewGroup.LayoutParams params = prev_w_l.getLayoutParams();
-
-                my_adp = new ArrayAdapter<String>(view_candidate_profile.this,android.R.layout.simple_dropdown_item_1line,l);
-
+                List<String> ls = new ArrayList<String>(Arrays.asList(c_promises.split("`")));
+                ViewGroup.LayoutParams params = promises.getLayoutParams();
+                my_adp = new ArrayAdapter<String>(view_candidate_profile.this,android.R.layout.simple_dropdown_item_1line,ls);
                 params.height = 99* (my_adp.getCount());
+               promises.setAdapter(my_adp);
+
+
+
+                ////////////////////////////////////////////
+                ///////////////////////////////////////////////////////////
+                List<String> l = new ArrayList<String>(Arrays.asList(c_works.split("`")));
+                ViewGroup.LayoutParams params1 = prev_w_l.getLayoutParams();
+                my_adp = new ArrayAdapter<String>(view_candidate_profile.this,android.R.layout.simple_dropdown_item_1line,l);
+                params1.height = 99* (my_adp.getCount());
                 prev_w_l.setAdapter(my_adp);
 
+
+                ////////////////////////////////////////////////////////////
                 scr.setVisibility(View.VISIBLE);
-
-
-
-        ////////////////////////////////////////////
-
 
 
 

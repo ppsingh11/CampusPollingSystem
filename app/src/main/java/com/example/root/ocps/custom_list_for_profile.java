@@ -9,6 +9,7 @@ import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -47,6 +48,9 @@ public class custom_list_for_profile extends BaseAdapter {
     static int var=1;
 
     Context mContext;
+
+    //public custom_list_for_profile adp;
+
 
     ArrayList<String> Candidate_name = new ArrayList<String>();
     ArrayList<String> Candidate_roll = new ArrayList<String>();
@@ -146,8 +150,13 @@ public class custom_list_for_profile extends BaseAdapter {
 
 
 
-              //  list1.setAdapter(new custom_list_for_profile(VOTE,mContext,pst));
+         /*custom_list_for_profile adp = new custom_list_for_profile(VOTE,mContext,pst);
 
+                list1.setAdapter(adp);
+
+
+               adp.notifyDataSetChanged();
+*/
 
                 /////////////////////////
 

@@ -67,12 +67,13 @@
 
     <TextView
         android:text="Forgot Password?"
-        android:textSize="15dp"
+        android:textSize="20dp"
+        android:onClick="forgot_password"
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:id="@+id/textView2" />
+        android:id="@+id/f_password" />
 
 
 </LinearLayout>

@@ -48,7 +48,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:visibility="invisible"
+        android:visibility="gone"
         android:layout_height="wrap_content"
         android:id="@+id/otp_layout">
 
@@ -125,51 +125,6 @@
         android:layout_weight="0.3" />
       </LinearLayout>
 
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/nominatingfor" />
-
-
-
-            <Spinner
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/party" />
-
-            <Button
-                android:text="ADD PROMISES"
-                android:onClick="Promises"
-                android:layout_width="match_parent"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/promises" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:visibility="gone"
-                android:orientation="horizontal"
-                android:id="@+id/promise_layout"
-                android:layout_height="match_parent">
-
-
-
-            <EditText
-                android:hint="Promise"
-                android:layout_width="0dp"
-                android:layout_weight="0.3"
-                android:id="@+id/add_promise"
-                android:layout_height="wrap_content" />
-
-             <Button
-                 android:text="ADD"
-                 android:onClick="Add_promise"
-                 android:id="@+id/promise_add"
-                 android:layout_width="0dp"
-                 android:layout_weight="0.2"
-                 android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -215,6 +170,86 @@
 
             </LinearLayout>
 
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nominatingfor" />
+
+
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/party" />
+
+            <Button
+                android:text="ADD PROMISES"
+                android:onClick="Promises"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/promises" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:id="@+id/promise_layout"
+                android:layout_height="match_parent">
+
+
+
+            <EditText
+                android:hint="Promise"
+                android:layout_width="0dp"
+                android:layout_weight="0.3"
+                android:id="@+id/add_promise"
+                android:layout_height="wrap_content" />
+
+             <Button
+                 android:text="ADD"
+                 android:onClick="Add_promise"
+                 android:id="@+id/promise_add"
+                 android:layout_width="0dp"
+                 android:layout_weight="0.2"
+                 android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <Button
+                android:text="ADD PREVIOUS WORKS"
+                android:onClick="previous_works"
+                android:layout_width="match_parent"
+                android:layout_marginTop="5dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/prevous_work" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                android:orientation="horizontal"
+                android:id="@+id/p_work_layout"
+                android:layout_height="match_parent">
+
+
+
+                <EditText
+                    android:hint="Previous Work"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:id="@+id/previous_works"
+                    android:layout_height="wrap_content" />
+
+                <Button
+                    android:text="ADD"
+                    android:onClick="Add_works"
+                    android:id="@+id/add_previous_work"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+
+
 
 
 
@@ -234,9 +269,9 @@
         android:layout_margin="8dp"
         android:background="#f9f9d3"
         android:layout_height="40dp"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:ems="10"
-        android:hint="Email"
+        android:hint="Contact"
         android:id="@+id/mail" />
 
 

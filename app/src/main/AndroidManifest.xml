@@ -33,6 +33,8 @@
 
         <activity android:name=".candReg"
             android:label="CandidateReg"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <activity android:name=".voterLogin"

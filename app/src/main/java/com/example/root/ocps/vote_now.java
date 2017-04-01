@@ -19,7 +19,7 @@ public class vote_now extends Activity {
         setContentView(R.layout.vote_now);
 
         s = getIntent().getStringExtra("POST");
-
+ 
 
         list = (ListView)findViewById(R.id.cand_list);
 
