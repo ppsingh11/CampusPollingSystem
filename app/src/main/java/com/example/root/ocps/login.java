@@ -28,6 +28,7 @@ public class login extends Activity{
 
     EditText Roll,Passwd;
     ProgressDialog pd;
+    String id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +88,7 @@ public class login extends Activity{
             if(sb.equals("OK")) {
 
                 Intent voter_login = new Intent(login.this, voterLogin.class);
+                voter_login.putExtra("ID",id);
 
                 startActivity(voter_login);
             }
@@ -119,7 +121,7 @@ public class login extends Activity{
 
     public void voter_login(View view) {
 
-        String id = Roll.getText().toString();
+         id = Roll.getText().toString();
         String pass = Passwd.getText().toString();
 
         if(id.isEmpty())

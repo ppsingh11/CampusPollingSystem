@@ -20,11 +20,15 @@ import java.util.ArrayList;
 public class voterLogin extends Activity {
 
     Spinner spn_profile,spn_vote;
+    String voter_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.voter_login);
+
+
+        voter_id = getIntent().getStringExtra("ID");
 
         spn_profile = (Spinner)findViewById(R.id.c_spinner);
         spn_vote = (Spinner)findViewById(R.id.v_spinner);
@@ -93,6 +97,7 @@ public class voterLogin extends Activity {
         String str = spn_vote.getSelectedItem().toString();
         Intent i = new Intent(this,vote_now.class);
         i.putExtra("POST",str);
+        i.putExtra("ID",voter_id);
         startActivity(i);
 
     }

@@ -43,7 +43,7 @@
             android:id="@+id/party_sym"/>
         <Button
             android:text="VOTE"
-            android:onClick="cast_vote"
+
             android:layout_width="0dp"
             android:layout_weight="0.3"
             android:layout_height="wrap_content"

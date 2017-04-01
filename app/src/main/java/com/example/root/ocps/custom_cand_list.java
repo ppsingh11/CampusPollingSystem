@@ -39,10 +39,12 @@ public class custom_cand_list extends BaseAdapter {
     vote_now VOTE;
     int flag=0;
     TextView c_name,c_roll;
+    Button vote_btn;
     ImageView p_sym;
     Button cast_vote;
     ProgressDialog pd;
     String pst;
+    String VoterId;
 
     Context mContext;
 
@@ -121,7 +123,7 @@ public class custom_cand_list extends BaseAdapter {
                 String c_name,p_sym,c_id;
 
 
-                Toast.makeText(mContext, ""+json.length(), Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(mContext, ""+json.length(), Toast.LENGTH_SHORT).show();
 
                 for(int p=0;p<json.length();)
                 {
@@ -175,16 +177,17 @@ public class custom_cand_list extends BaseAdapter {
     }
 
 
-    custom_cand_list(vote_now v,Context context,String str)
+    custom_cand_list(vote_now v,Context context,String str,String voter_id)
     {
         VOTE = v;
         pst = str;
+        VoterId = voter_id;
         mContext = context;
         MyTask t = new MyTask();
         t.execute(pst);
        // Toast.makeText(mContext,"p "+post,Toast.LENGTH_SHORT).show();
         int data = 400;
-      //  int result = fact(data);
+        int result = fact(data);
         try {
             t.get();
         }
@@ -208,10 +211,27 @@ public class custom_cand_list extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         LayoutInflater inf = LayoutInflater.from(VOTE);
         View v = inf.inflate(R.layout.custom_cand_list, null);
+
+        ///////////////////////////////////////////////////
+        vote_btn = (Button)v.findViewById(R.id.vote_now);
+
+        vote_btn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                String candidate_id = Candidate_roll.get(position);
+                Toast.makeText(mContext," "+candidate_id+" "+VoterId,Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+        ////////////////////////////////////////////////
 
 
 

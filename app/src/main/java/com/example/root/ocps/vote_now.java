@@ -12,18 +12,19 @@ import android.widget.Toast;
 
 public class vote_now extends Activity {
     ListView list;
-    String s;
+    String s,v_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vote_now);
 
         s = getIntent().getStringExtra("POST");
+        v_id = getIntent().getStringExtra("ID");
  
 
         list = (ListView)findViewById(R.id.cand_list);
 
-        list.setAdapter(new custom_cand_list(vote_now.this,this,s));
+        list.setAdapter(new custom_cand_list(vote_now.this,this,s,v_id));
     }
 
     public void cast_vote(View view) {

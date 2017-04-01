@@ -109,13 +109,6 @@ public class candReg extends Activity {
         Party_symbol = (ImageView) findViewById(R.id.party_symbol);
         Image = (ImageView) findViewById(R.id.image);
 
-        ////////////////////////////////
-       /* spf = getSharedPreferences("myshared", Context.MODE_PRIVATE);
-
-        if(spf.getBoolean("Flag",false)) {
-            LinearLayout L = (LinearLayout) findViewById(R.id.Search_layout);
-            L.setVisibility(View.VISIBLE);
-        }*/
 
 
         if (savedInstanceState != null) {
@@ -132,9 +125,6 @@ public class candReg extends Activity {
 
             LinearLayout L = (LinearLayout) findViewById(R.id.Search_layout);
             L.setVisibility(View.VISIBLE);
-        } else {
-            // Probably initialize members with default values for a new instance
-           Toast.makeText(this,"No data saved",Toast.LENGTH_SHORT).show();
         }
 
 
@@ -340,13 +330,6 @@ class MyTask extends AsyncTask<String, Integer, String> {
 
             btn.setVisibility(View.GONE);
 
-            /////////////////////////////////
-            SharedPreferences.Editor edt = spf.edit();
-            edt.putBoolean("Flag",true);
-            edt.commit();
-
-
-            ////////////////////////////////
 
 
         } catch (Exception e) {
