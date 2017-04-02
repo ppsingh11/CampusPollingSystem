@@ -1,7 +1,9 @@
 package com.example.root.ocps;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -72,6 +74,7 @@ public class custom_cand_list extends BaseAdapter {
 
                 String data = URLEncoder.encode("POST", "UTF-8") + "=" +
                         URLEncoder.encode(p, "UTF-8");
+
 
                 URL url = new URL(link);
                 URLConnection conn = url.openConnection();
@@ -166,6 +169,112 @@ public class custom_cand_list extends BaseAdapter {
 
     ///////////////////////////Task End//////////////////////////////////
 
+
+    //////////////connecting to server to cast vote//////////////////
+    /////////////////////////////////Async Task vote/////////////////////////////////
+    class CastVote extends AsyncTask<String, Integer, String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String link = "https://onlinevotingnitp.000webhostapp.com/vote.php";
+
+            String p = params[0];
+
+            try {
+
+
+                String data = URLEncoder.encode("C_ID", "UTF-8") + "=" +
+                        URLEncoder.encode(p, "UTF-8");
+                data += "&" + URLEncoder.encode("V_ID", "UTF-8")
+                        + "=" + URLEncoder.encode(VoterId, "UTF-8");
+
+                URL url = new URL(link);
+                URLConnection conn = url.openConnection();
+
+                conn.setDoOutput(true);
+                OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
+
+                wr.write(data);
+
+                wr.flush();
+
+                BufferedReader reader = new BufferedReader(new
+                        InputStreamReader(conn.getInputStream()));
+                StringBuffer sb = new StringBuffer("");
+                String line = "";
+
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                    break;
+                }
+
+                reader.close();
+
+                return sb.toString();
+
+
+            }
+            catch (Exception e) {
+
+                Toast.makeText(mContext, "No Internet Connection", Toast.LENGTH_SHORT).show();
+                return e.toString();
+            }
+
+        }
+////////////////////////////////   post execute     /////////////////////////////
+
+
+        @Override
+        protected void onPostExecute(String sb) {
+            pd.dismiss();
+            flag=1;
+
+            try {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                builder.setMessage(sb.toString());
+                builder.setCancelable(false);
+                builder.setTitle("Message");
+
+                builder.setPositiveButton(
+                        "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                                dialog.cancel();
+                            }
+                        });
+
+
+                AlertDialog alert11 = builder.create();
+                alert11.show();
+
+            }
+            catch (Exception e)
+            {
+                Toast.makeText(mContext, ""+e.toString(), Toast.LENGTH_SHORT).show();
+            }
+
+
+        }
+        //////////////////////////////////////post execution finished///////////////////////////////////////
+        @Override
+        protected void onPreExecute() {
+            pd = ProgressDialog.show(mContext, "", "Please Wait", false);
+
+        }
+
+
+
+    }
+
+    ///////////////////////////Task End//////////////////////////////////
+
+
+
+
+
+
     public int fact(int a)
     {
         int res=1;
@@ -225,6 +334,10 @@ public class custom_cand_list extends BaseAdapter {
             public void onClick(View arg0) {
                 String candidate_id = Candidate_roll.get(position);
                 Toast.makeText(mContext," "+candidate_id+" "+VoterId,Toast.LENGTH_SHORT).show();
+
+
+                CastVote cv = new CastVote();
+                cv.execute(candidate_id);
 
             }
         });

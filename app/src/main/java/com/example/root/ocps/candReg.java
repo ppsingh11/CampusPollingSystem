@@ -187,7 +187,7 @@ public String getImagePath(Uri uri){
             String path = getImagePath(uri);
             File file = new File(path);
             long length = file.length() / 1024;
-            if (length > 25) {
+            if (length > 28) {
                 Toast.makeText(this,"Too Large File Selected",Toast.LENGTH_SHORT).show();
 
             } else {
@@ -211,7 +211,7 @@ public String getImagePath(Uri uri){
             String path = getImagePath(uri);
             File file = new File(path);
             long length = file.length() / 1024;
-            if (length > 10) {
+            if (length > 13) {
                 Toast.makeText(this,"Too Large File Selected",Toast.LENGTH_SHORT).show();
 
             }
