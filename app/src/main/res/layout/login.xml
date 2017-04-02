@@ -67,7 +67,7 @@
 
     <TextView
         android:text="Forgot Password?"
-        android:textSize="20dp"
+        android:textSize="18dp"
         android:onClick="forgot_password"
         android:layout_marginLeft="100dp"
         android:layout_width="match_parent"

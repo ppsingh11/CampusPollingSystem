@@ -15,7 +15,7 @@
 
         <ImageView
             android:layout_width="0dp"
-            android:layout_weight="0.6"
+            android:layout_weight="0.60"
             android:layout_height="50dp"
             android:id="@+id/party_sym"/>
 

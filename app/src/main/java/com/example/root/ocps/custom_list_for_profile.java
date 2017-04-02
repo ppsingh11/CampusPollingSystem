@@ -218,7 +218,7 @@ public class custom_list_for_profile extends BaseAdapter {
         }
         catch (Exception e)
         {
-            Toast.makeText(mContext,"p "+pst,Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
     }

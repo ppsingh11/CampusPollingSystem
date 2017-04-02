@@ -54,7 +54,7 @@ public class view_candidate_profile extends Activity {
 
         s = getIntent().getStringExtra("ROLL");
 
-        Toast.makeText(this,"roll "+s,Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this,"roll "+s,Toast.LENGTH_SHORT).show();
         ////////////////////////////////////////////////////////////
         name = (TextView)findViewById(R.id.name);
         roll = (TextView)findViewById(R.id.roll);

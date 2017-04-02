@@ -155,7 +155,7 @@
             android:background="#49acaca8"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.3"
+            android:layout_weight="0.30"
             android:id="@+id/button3"
             android:layout_below="@+id/button"
 

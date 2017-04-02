@@ -50,7 +50,14 @@ public class grievances extends AppCompatActivity {
         grievance.add("Laundry");
         grievance.add("Sweeping");
 
-        new griev().execute("g");
+        try {
+
+            new griev().execute("g");
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this,"No internet",Toast.LENGTH_SHORT).show();
+        }
         ///////////////////////////////////////////////////
     }
         /////////////////////////////////Async Task Submit/////////////////////////////////
@@ -145,6 +152,26 @@ public class grievances extends AppCompatActivity {
                     BarData theData;
                     theData = new BarData(grievance,barDataSet);
                     barChart.setData(theData);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(grievances.this);
+                    builder.setMessage("Click on the screen to get result, All the figures are in percentage");
+                    builder.setCancelable(false);
+                    builder.setTitle("Message");
+
+                    builder.setPositiveButton(
+                            "OK",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    dialog.cancel();
+                                }
+                            });
+
+
+                    AlertDialog alert11 = builder.create();
+                    alert11.show();
+
+
 
                 }
                 catch (Exception e)

@@ -27,8 +27,5 @@ public class vote_now extends Activity {
         list.setAdapter(new custom_cand_list(vote_now.this,this,s,v_id));
     }
 
-    public void cast_vote(View view) {
 
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
-    }
 }

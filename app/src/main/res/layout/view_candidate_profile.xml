@@ -88,7 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_gravity="center"
                     android:id="@+id/pic"
-                    android:layout_weight="0.4"
+                    android:layout_weight="0.40"
                     android:layout_height="140dp"
                     android:background="@drawable/logo"
                     />

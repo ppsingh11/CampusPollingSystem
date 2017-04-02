@@ -586,7 +586,7 @@ class MyTask extends AsyncTask<String, Integer, String> {
             Random ran = new Random();
             int otp = ran.nextInt(8888) + 1111;
             OTP = ""+otp;
-            Toast.makeText(this,"OTP "+OTP, Toast.LENGTH_SHORT).show();
+
 
             new MyTask().execute(OTP);
         }

@@ -41,7 +41,7 @@ public class list_of_candidates_to_view_profile extends ListActivity {
         TextView n = (TextView)v.findViewById(R.id.candidate_roll);
         String roll = n.getText().toString();
 
-        Toast.makeText(this,roll,Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this,roll,Toast.LENGTH_SHORT).show();
 
         Intent i =new Intent(this,view_candidate_profile.class);
         i.putExtra("ROLL",roll);

@@ -169,6 +169,8 @@ public class voterReg extends Activity {
 
                 LinearLayout l = (LinearLayout) findViewById(R.id.otp_layout);
                 l.setVisibility(View.VISIBLE);
+                Button btn = (Button)findViewById(R.id.search);
+                btn.setVisibility(View.GONE);
 
             } catch (Exception e) {
                 Toast.makeText(getApplicationContext(), ""+e.toString(), Toast.LENGTH_SHORT).show();
@@ -257,7 +259,7 @@ public class voterReg extends Activity {
 
 
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Done", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
 
 
             }
@@ -369,6 +371,8 @@ public class voterReg extends Activity {
 
             LinearLayout otp_l = (LinearLayout) findViewById(R.id.otp_layout);
             otp_l.setVisibility(View.GONE);
+
+
 
             LinearLayout l = (LinearLayout) findViewById(R.id.searchlayout);
             l.setVisibility(View.VISIBLE);

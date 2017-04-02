@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -242,6 +243,8 @@ public class custom_cand_list extends BaseAdapter {
                             public void onClick(DialogInterface dialog, int id) {
 
                                 dialog.cancel();
+                                Intent i = new Intent(mContext,MainActivity.class);
+                                mContext.startActivity(i);
                             }
                         });
 
@@ -302,7 +305,7 @@ public class custom_cand_list extends BaseAdapter {
         }
         catch (Exception e)
         {
-            Toast.makeText(mContext,"p "+pst,Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext,e.toString(),Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -333,7 +336,7 @@ public class custom_cand_list extends BaseAdapter {
             @Override
             public void onClick(View arg0) {
                 String candidate_id = Candidate_roll.get(position);
-                Toast.makeText(mContext," "+candidate_id+" "+VoterId,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(mContext," "+candidate_id+" "+VoterId,Toast.LENGTH_SHORT).show();
 
 
                 CastVote cv = new CastVote();

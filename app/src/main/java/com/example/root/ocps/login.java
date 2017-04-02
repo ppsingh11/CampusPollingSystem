@@ -85,10 +85,13 @@ public class login extends Activity{
         protected void onPostExecute(String sb) {
             pd.dismiss();
 
-            if(sb.equals("OK")) {
+            String[] part = sb.split("`");
+
+            if(part[0].equals("OK")) {
 
                 Intent voter_login = new Intent(login.this, voterLogin.class);
                 voter_login.putExtra("ID",id);
+                voter_login.putExtra("Status",part[1]);
 
                 startActivity(voter_login);
             }
