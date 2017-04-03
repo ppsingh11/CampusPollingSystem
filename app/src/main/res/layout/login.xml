@@ -43,7 +43,11 @@
 
 
 
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/login_layout"
+        android:layout_height="wrap_content">
 
     <EditText
         android:layout_width="match_parent"
@@ -67,6 +71,7 @@
 
     <TextView
         android:text="Forgot Password?"
+        android:clickable="true"
         android:textSize="18dp"
         android:onClick="forgot_password"
         android:layout_marginLeft="100dp"
@@ -74,6 +79,80 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:id="@+id/f_password" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:text="CHANGE PASSWORD"
+        android:onClick="change_password"
+        android:id="@+id/change_pass"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:id="@+id/o_layout">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="0.6"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:layout_margin="5dp"
+            android:hint="Enter OTP"
+            android:background="#f9f9d3"
+            android:id="@+id/otp" />
+
+        <Button
+            android:text="VERIFY"
+            android:onClick="verify_otp"
+            android:layout_width="0dp"
+            android:layout_weight="0.4"
+            android:layout_height="50dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:id="@+id/set_new_pass"
+        android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+
+            android:hint="Enter New Password"
+            android:background="#f9f9d3"
+            android:id="@+id/new_pass" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+
+            android:hint="Re-Enter Password"
+            android:background="#f9f9d3"
+            android:id="@+id/re_pass" />
+        <Button
+            android:layout_width="match_parent"
+            android:onClick="ChangePassword"
+            android:text="SUBMIT"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
