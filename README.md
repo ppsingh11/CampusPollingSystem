@@ -1,0 +1,2 @@
+# CampusPollingSystem
+This application provides  a new technique of casting votes using mobile phones. Android voting system is an application developed for android devices to deploy an easy and flexible way of casting votes anytime and from anywhere. Apart from that voter can also view candidate's profile, its promises etc.The application is especially developed for Institutes to get students vote for election in campus. One voter can only post one vote for a single post. At the end of the voting process the system counts the total votes and generates a brief report.
