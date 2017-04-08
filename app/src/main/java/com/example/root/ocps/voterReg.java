@@ -27,6 +27,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 import org.apache.http.HttpResponse;
@@ -54,6 +56,9 @@ public class voterReg extends Activity {
 
     CheckBox Water, Wifi, Laundry, Sweeping, Food, Hosteler;
 
+    final String PASSWORD_PATTERN =
+            "((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +83,7 @@ public class voterReg extends Activity {
         Hosteler = (CheckBox) findViewById(R.id.hosteler);
 
     }
+
 
 
 
@@ -302,6 +308,12 @@ public class voterReg extends Activity {
         String v_hosteler = "No", v_wifi = "No", v_water = "No", v_food = "No", v_laundry = "No", v_sweeping = "No";
         String v_pass = Password.getText().toString();
 
+        /////////////////////checking for strong password/////////////////////
+
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(v_pass);
+
+        ////////////////////////////////////////////////////////////////////
 
         if (Hosteler.isChecked()) {
             v_hosteler = "Yes";
@@ -325,8 +337,27 @@ public class voterReg extends Activity {
 
         if (v_mail.isEmpty()) {
             Toast.makeText(this, "Enter Contact Number", Toast.LENGTH_SHORT).show();
-        } else if (v_pass.isEmpty()) {
-            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+        }
+
+        else if (!matcher.matches()) {
+            Toast.makeText(this, "Enter a strong Password", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(voterReg.this);
+            builder.setMessage("Password must be at least 6 characters long and must contain an upper case alphabet, a lower case alphabet, a digit and one of these special characters- @ # $ %");
+            builder.setCancelable(false);
+            builder.setTitle("Message");
+
+            builder.setPositiveButton(
+                    "OK, Got it",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+
+            AlertDialog alert11 = builder.create();
+            alert11.show();
         } else {
 
            try {
@@ -383,4 +414,8 @@ public class voterReg extends Activity {
         }
 
     }
+
+
+
+
 }

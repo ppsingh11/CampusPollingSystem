@@ -67,7 +67,7 @@ public class custom_list_for_profile extends BaseAdapter {
         @Override
         protected String doInBackground(String... params) {
 
-            String link = "https://onlinevotingnitp.000webhostapp.com/candidate_list_for_voting.php";
+            String link = "https://onlinevotingnitp.000webhostapp.com/candidate_list_for_profile.php";
 
             String p = params[0];
 

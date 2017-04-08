@@ -23,6 +23,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by root on 13/2/17.
@@ -34,6 +36,7 @@ public class login extends Activity{
     ProgressDialog pd;
     String id;
     String OTP;
+    final String PASSWORD_PATTERN ="((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -411,7 +414,34 @@ public class login extends Activity{
         String pass = newpass.getText().toString();
         String re_pass = repass.getText().toString();
 
-        if(!pass.equals(re_pass))
+        //////////////check for strong password /////////////////
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+        Matcher matcher = pattern.matcher(pass);
+
+
+        //////////////////////////////////////////////////////
+        if (!matcher.matches()) {
+            Toast.makeText(this, "Enter a strong Password", Toast.LENGTH_SHORT).show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(login.this);
+            builder.setMessage("Password must be at least 6 characters long and must contain an upper case alphabet, a lower case alphabet, a digit and one of these special characters- @ # $ %");
+            builder.setCancelable(false);
+            builder.setTitle("Message");
+
+            builder.setPositiveButton(
+                    "OK, Got it",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+
+                            dialog.cancel();
+                        }
+                    });
+
+
+            AlertDialog alert11 = builder.create();
+            alert11.show();
+        }
+
+        else if(!pass.equals(re_pass))
         {
             Toast.makeText(this,"Passwords do not match",Toast.LENGTH_SHORT).show();
         }
