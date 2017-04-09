@@ -172,7 +172,7 @@ public class view_candidate_profile extends Activity {
                 PIC.setImageBitmap(decodedByte);
 
                 byte[] decodedString1 = Base64.decode(p_sym, Base64.DEFAULT);
-                Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString.length);
+                Bitmap decodedByte1 = BitmapFactory.decodeByteArray(decodedString1, 0, decodedString1.length);
                 SYM.setImageBitmap(decodedByte1);
 
         ///////////////////////////////////////////////
