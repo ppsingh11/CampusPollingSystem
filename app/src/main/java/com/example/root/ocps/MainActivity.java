@@ -136,4 +136,11 @@ public class MainActivity extends AppCompatActivity
         Intent gr = new Intent(this,grievances.class);
         startActivity(gr);
     }
+
+    public void view_result(View view) {
+
+        Intent er = new Intent(this,election_result.class);
+        startActivity(er);
+
+    }
 }

@@ -57,6 +57,13 @@
             android:label="View Profile"
             android:theme="@style/AppTheme" />
 
+        <activity android:name=".election_result"
+            android:label="View Profile"
+            android:theme="@style/AppTheme" />
+        <activity android:name=".custom_result"
+            android:label="View Profile"
+            android:theme="@style/AppTheme" />
+
     </application>
 
 </manifest>
