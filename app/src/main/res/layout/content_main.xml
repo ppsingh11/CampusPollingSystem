@@ -88,7 +88,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:id="@+id/button"
+            android:id="@+id/v_reg"
 
 
 
@@ -105,7 +105,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:id="@+id/button2"
+            android:id="@+id/login"
             />
 
         <TextView
@@ -140,7 +140,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.3"
-            android:id="@+id/button5"
+            android:id="@+id/grievances"
 
 
             />
@@ -157,8 +157,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="0.30"
-            android:id="@+id/button3"
-            android:layout_below="@+id/button"
+            android:id="@+id/nomination"
 
             />
         <TextView
@@ -176,6 +175,7 @@
          android:layout_width="match_parent"
          android:text="VIEW ELECTION RESULT"
          android:onClick="view_result"
+         android:id="@+id/result"
          android:layout_height="wrap_content" />
 
     <TextView
